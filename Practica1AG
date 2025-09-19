@@ -34,6 +34,8 @@ class Cromosoma:
         for _ in self.lista_objetos:
             self.genes.append(random.randint(0, 10))
 
+
+ # Funcion que calcula el peso y precio total de cada gen en el cromosoma
     def Totales(self):
         peso_total = 0
         precio_total = 0
@@ -44,11 +46,11 @@ class Cromosoma:
         return peso_total, precio_total
 
 
-        # Falta agregar aqui un buble que cuente todos los objetos del cromosoma
+
 
 def GenPoblacion(cant_poblacion, lista_objetos, capacidad):
     poblacion = []
-    #Este bucle (while) se ejecuta hasta que todos los elementos de la poblacion sean validos porque solo se agregan weyes cuando son validos"""
+    #Este bucle (while) se ejecuta hasta que todos los elementos de la poblacion sean validos porque solo se agregan cuando son validos"""
     while len(poblacion) < cant_poblacion:
         nCromosoma = Cromosoma(lista_objetos) # Cromosoma nuevo basado en la clase Cromosoma
         peso, _ = nCromosoma.Totales() # Obtener solo el peso
@@ -63,4 +65,11 @@ restricciones = {
     3: 2    # Objeto 4 (Skiving Snackbox) minimo 2
 }
 
-def VerRestricciones(): #Pendiente (checar que el comosoma recibido cumpla las restricciones)
+def VerRestricciones(cromosoma):
+#Verifica si el cromosoma obtenido cumple con las restricciones definidas T/F
+    for i, minimo in restricciones.items():
+        if cromosoma.genes[i] < minimo:
+            return False    
+    return True
+
+
