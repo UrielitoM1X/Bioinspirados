@@ -1,0 +1,54 @@
+"""
+    5BM1 Practica 1: Genetic Algorithms
+    Miranda Ferreyra Uriel
+    Santiago Illoldi Francisco Javier
+"""
+import random
+
+class Item:
+    def __init__(self, name, weight, price):
+        self.name = name
+        self.weight = weight
+        self.price = price
+
+lista_objetos = [
+    # Agregar aqui los demas objetos (separados por comas)
+    Item("Decoy Detonators", 4, 10),
+    Item("Love Potion", 2, 8)
+]
+
+class Cromosoma:
+    def __init__(self, lista_objetos):
+        self.genes = []
+        self.fitness = 0
+        self.lista_objetos = lista_objetos
+        self.CrearGenes()
+
+    def CrearGenes(self):
+        for _ in self.lista_objetos:
+            self.genes.append(random.radiant(0, 10))
+    
+    def Totales(self):
+        peso_total = 0
+        precio_total = 0
+        # Falta agregar aqui un buble que cuente todos los objetos del cromosoma
+
+def GenPoblacion(cant_poblacion, lista_objetos, capacidad):
+    poblacion = []
+    """Este bucle (while) se ejecuta hasta que todos los elementos de la poblacion sean validos porque solo se agregan weyes cuando son validos"""
+    while len(poblacion) < cant_poblacion:
+        nCromosoma = Cromosoma(lista_objetos) # Cromosoma nuevo basado en la clase Cromosoma
+        peso, _ = nCromosoma.Totales() # Obtener solo el peso
+
+        if peso <= capacidad and VerRestricciones: # Si pesa menos de lo max permitido y cumple el resto de restricciones se agrega a la poblacion
+            poblacion.append(nCromosoma) 
+            
+    return poblacion
+
+restricciones = {
+    1: 3,   # Objeto 2 (Love Potions) minimo 3
+    3: 2    # Objeto 4 (Skiving Snackbox) minimo 2
+}
+
+def VerRestricciones(): #Pendiente (checar que el comosoma resivido cumpla las restricciones)
+    #...
