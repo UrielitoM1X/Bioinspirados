@@ -63,7 +63,8 @@ class Cromosoma:
             self.fitness = 0
         else:
             self.fitness = precio
-    
+
+    # Indica al interprete de python como comparar el cromosoma con otro
     def __lt__(self, other):
         return self.fitness < other.fitness
 
@@ -81,5 +82,6 @@ def GenPoblacion(cant_poblacion, lista_objetos, capacidad):
 
         if peso <= capacidad and VerRestricciones:
             poblacion.append(nCromosoma) 
+
 
     return poblacion
