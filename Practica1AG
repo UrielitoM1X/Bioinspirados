@@ -12,7 +12,7 @@ class Item:
         self.price = price
 
 lista_objetos = [
-    # Agregar aqui los demas objetos (separados por comas)
+    # Lista de objetos, con su peso y precio respectivamente
     Item("Decoy Detonators", 4, 10),
     Item("Love Potion", 2, 8),
     Item("Extendable Ears", 5, 12),
@@ -33,15 +33,22 @@ class Cromosoma:
     def CrearGenes(self):
         for _ in self.lista_objetos:
             self.genes.append(random.randint(0, 10))
-    
+
     def Totales(self):
         peso_total = 0
         precio_total = 0
+        for i, gen in enumerate(self.genes):
+            print(f"{self.lista_objetos[i].name}: {gen}")
+            peso_total += gen * self.lista_objetos[i].weight
+            precio_total += gen * self.lista_objetos[i].price
+        return peso_total, precio_total
+
+
         # Falta agregar aqui un buble que cuente todos los objetos del cromosoma
 
 def GenPoblacion(cant_poblacion, lista_objetos, capacidad):
     poblacion = []
-    """Este bucle (while) se ejecuta hasta que todos los elementos de la poblacion sean validos porque solo se agregan weyes cuando son validos"""
+    #Este bucle (while) se ejecuta hasta que todos los elementos de la poblacion sean validos porque solo se agregan weyes cuando son validos"""
     while len(poblacion) < cant_poblacion:
         nCromosoma = Cromosoma(lista_objetos) # Cromosoma nuevo basado en la clase Cromosoma
         peso, _ = nCromosoma.Totales() # Obtener solo el peso
@@ -57,5 +64,3 @@ restricciones = {
 }
 
 def VerRestricciones(): #Pendiente (checar que el comosoma recibido cumpla las restricciones)
-
-    #...
